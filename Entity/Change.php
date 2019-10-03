@@ -1,6 +1,6 @@
 <?php
 
-namespace Sinmax\AuditBundle\Entity;
+namespace TCR\AuditBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -46,7 +46,7 @@ class Change
 		/**
 		* Constructor
 		*/
-		public function __construct(\Sinmax\AuditBundle\Entity\Audit $audit, $field=null, $value=null) {
+		public function __construct(\TCR\AuditBundle\Entity\Audit $audit, $field=null, $value=null) {
 			$this->audit = $audit;
 			$this->field = $field;
 			$this->value = $value;
@@ -111,10 +111,10 @@ class Change
     /**
      * Set audit
      *
-     * @param \Sinmax\AuditBundle\Entity\Audit $audit
+     * @param \TCR\AuditBundle\Entity\Audit $audit
      * @return Change
      */
-    public function setAudit(\Sinmax\AuditBundle\Entity\Audit $audit = null)
+    public function setAudit(\TCR\AuditBundle\Entity\Audit $audit = null)
     {
         $this->audit = $audit;
 
@@ -124,7 +124,7 @@ class Change
     /**
      * Get audit
      *
-     * @return \Sinmax\AuditBundle\Entity\Audit
+     * @return \TCR\AuditBundle\Entity\Audit
      */
     public function getAudit()
     {

@@ -1,11 +1,11 @@
 <?php
-namespace Sinmax\AuditBundle\EventListener;
+namespace TCR\AuditBundle\EventListener;
 
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PostFlushEventArgs;
-use Sinmax\AuditBundle\Entity\Audit;
-use Sinmax\AuditBundle\Entity\Change;
+use TCR\AuditBundle\Entity\Audit;
+use TCR\AuditBundle\Entity\Change;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class AuditService

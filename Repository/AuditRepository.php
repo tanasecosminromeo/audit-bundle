@@ -6,7 +6,7 @@
  * Time: 16:07
  */
 
-namespace Sinmax\AuditBundle\Repository;
+namespace TCR\AuditBundle\Repository;
 
 
 use Doctrine\ORM\EntityRepository;

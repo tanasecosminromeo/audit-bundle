@@ -6,7 +6,7 @@
  * Time: 16:50
  */
 
-namespace Sinmax\AuditBundle\Service;
+namespace TCR\AuditBundle\Service;
 
 
 

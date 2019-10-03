@@ -1,6 +1,6 @@
 <?php
 
-namespace Sinmax\AuditBundle\Entity;
+namespace TCR\AuditBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 				    @ORM\Index(name="entityId_idx", columns={"entityId"}),
 						@ORM\Index(name="user_idx", columns={"user"})
     }))
- * @ORM\Entity(repositoryClass="Sinmax\AuditBundle\Repository\AuditRepository")
+ * @ORM\Entity(repositoryClass="TCR\AuditBundle\Repository\AuditRepository")
  */
 class Audit
 {
@@ -152,10 +152,10 @@ class Audit
     /**
      * Add change
      *
-     * @param \Sinmax\AuditBundle\Entity\Change $change
+     * @param \TCR\AuditBundle\Entity\Change $change
      * @return Audit
      */
-    public function addChange(\Sinmax\AuditBundle\Entity\Change $change)
+    public function addChange(\TCR\AuditBundle\Entity\Change $change)
     {
         $this->changes[] = $change;
 
@@ -165,9 +165,9 @@ class Audit
     /**
      * Remove changes
      *
-     * @param \Sinmax\AuditBundle\Entity\Change $change
+     * @param \TCR\AuditBundle\Entity\Change $change
      */
-    public function removeChange(\Sinmax\AuditBundle\Entity\Change $change)
+    public function removeChange(\TCR\AuditBundle\Entity\Change $change)
     {
         $this->changes->removeElement($change);
     }
