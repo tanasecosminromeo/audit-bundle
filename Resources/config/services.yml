@@ -1,0 +1,11 @@
+services:
+    sinmax.listener.audit:
+      class: Sinmax\AuditBundle\EventListener\AuditService
+      properties:
+        container: '@service_container'
+      tags:
+        - { name: doctrine.event_listener, event: preUpdate }
+        - { name: doctrine.event_listener, event: postFlush }
+
+    sinmax.auditviewer.service:
+      class: Sinmax\AuditBundle\Service\AuditViewerService

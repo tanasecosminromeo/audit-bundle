@@ -1,0 +1,29 @@
+{
+  "name": "tanasecosminromeo/audit-bundle",
+  "description": "Audit for Symfony2/3/4",
+  "keywords": ["audit"],
+  "homepage": "https://gitlab.tcrhd.net/tanasecosminromeo/audit-bundle",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Cosmin Romeo TANASE",
+      "email": "tanasecosminromeo@gmail.com",
+      "homepage": "http://tcrhd.net/"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.0",
+    "symfony/framework-bundle": "~2.3|~3.0|~4.0",
+    "symfony/dependency-injection": "~2.3|~3.0|~4.0",
+    "symfony/console": "~2.3|~3.0|~4.0"
+  },
+  "autoload": {
+    "psr-4": { "TCR\\AuditBundle\\": "" }
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "extra": {
+  }
+}

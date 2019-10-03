@@ -1,0 +1,182 @@
+<?php
+
+namespace Sinmax\AuditBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Audit
+ *
+ * @ORM\Table(name="audit",
+    indexes={
+           	@ORM\Index(name="entity_idx", columns={"entity"}),
+						@ORM\Index(name="user_idx", columns={"user"})
+    }))
+ * @ORM\Entity()
+ */
+class Audit
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+		/**
+     * @var string
+     *
+     * @ORM\Column(name="entity", type="text")
+     */
+    private $entity;
+
+		/**
+     * @var integer
+     *
+     * @ORM\Column(name="$entityId", type="integer")
+     */
+    private $entityId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user", type="integer")
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Change", cascade={"persist"},mappedBy="audit")
+     */
+    private $changes;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+	  /**
+	  * Constructor
+	  */
+	  public function __construct($entity="", $user=0) {
+	    $this->created = new \DateTime("now");
+			$this->entity  = $entity;
+			$this->user    = $user;
+			$this->changes = new \Doctrine\Common\Collections\ArrayCollection();
+		}
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set user
+     *
+     * @param integer $user
+     * @return Audit
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return integer
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set entity
+     *
+     * @param string $entity
+     * @return Audit
+     */
+    public function setEntity($entity)
+    {
+        $this->entity = $entity;
+
+        return $this;
+    }
+
+    /**
+     * Get entity
+     *
+     * @return string
+     */
+    public function getEntity()
+    {
+        return $this->entity;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Audit
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Add change
+     *
+     * @param \Sinmax\AuditBundle\Entity\Change $change
+     * @return Audit
+     */
+    public function addChange(\Sinmax\AuditBundle\Entity\Change $change)
+    {
+        $this->changes[] = $change;
+
+        return $this;
+    }
+
+    /**
+     * Remove changes
+     *
+     * @param \Sinmax\AuditBundle\Entity\Change $change
+     */
+    public function removeChange(\Sinmax\AuditBundle\Entity\Change $change)
+    {
+        $this->changes->removeElement($change);
+    }
+
+    /**
+     * Get changes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChanges()
+    {
+        return $this->changes;
+    }
+}
