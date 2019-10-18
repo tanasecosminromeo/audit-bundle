@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="audit_changes",
     indexes={
-           	@ORM\Index(name="field_idx", columns={"field"}, options={"lengths": [1000]})
+           	@ORM\Index(name="field_idx", columns={"field"}, options={"lengths": {1000}})
     }))
  * @ORM\Entity
  */
