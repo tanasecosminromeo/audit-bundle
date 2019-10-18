@@ -10,8 +10,22 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class AuditService
 {
-		private $em;
-		private $changes = [];
+    private $em;
+    private $changes = [];
+    /**
+     * @var array|false|string
+     */
+    private $audit_classes;
+    /**
+     * @var array|false|string
+     */
+    private $audit_prefix;
+
+    public function __construct()
+    {
+        $this->audit_classes = getenv('AUDIT_CLASSES') ?? $this->container->getParameter('audit_classes');
+        $this->audit_prefix = getenv('AUDIT_PREFIX') ?? $this->container->getParameter('audit_prefix');
+    }
 
     public function preUpdate(LifecycleEventArgs $args)
     {
@@ -19,13 +33,12 @@ class AuditService
 				$entityName = ClassUtils::getRealClass(get_class($entity));
 
 				# We only audit the entities we are configured to audit
-				// dump($this->container->getParameter('audit_classes')); exit;
-				if (!in_array($entityName, $this->container->getParameter('audit_classes'))) return;
+				if (!in_array($entityName, $this->audit_classes)) return;
 
 				if (count($args->getEntityChangeSet())<=0) return;
 				$this->em = $args->getEntityManager();
 
-				$key = $entity->getId()."|".str_replace($this->container->getParameter('audit_prefix'), '', $entityName);
+				$key = $entity->getId()."|".str_replace($this->audit_prefix, '', $entityName);
 				if (!isset($this->changes[$key])){ $this->changes[$key] = []; }
 				foreach ($args->getEntityChangeSet() as $field => $values){
 					if ($values[0]===$values[1]) continue;
