@@ -25,6 +25,10 @@ class AuditService
     {
         $this->audit_classes = getenv('AUDIT_CLASSES') ?? $this->container->getParameter('audit_classes');
         $this->audit_prefix = getenv('AUDIT_PREFIX') ?? $this->container->getParameter('audit_prefix');
+
+        if (gettype($this->audit_classes) !== 'array'){
+            $this->audit_classes = explode(',', $this->audit_classes);
+        }
     }
 
     public function preUpdate(LifecycleEventArgs $args)
