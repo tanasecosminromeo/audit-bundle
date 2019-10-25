@@ -1,11 +1,6 @@
 services:
-    TCR.listener.audit:
-      class: TCR\AuditBundle\EventListener\AuditService
-      properties:
-        container: '@service_container'
+    TCR\AuditBundle\EventListener\AuditService:
       tags:
-        - { name: doctrine.event_listener, event: preUpdate }
-        - { name: doctrine.event_listener, event: postFlush }
-
-    TCR.auditviewer.service:
-      class: TCR\AuditBundle\Service\AuditViewerService
+        - { name: doctrine.event_subscriber, connection: default }
+      arguments:
+        ['@security.helper']
