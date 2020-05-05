@@ -104,6 +104,9 @@ class AuditService implements EventSubscriber
                     return $class;
                 }
                 break;
+            case "array":
+                    $value = json_encode($value);
+                break;
             default:
                 return $value;
         }
