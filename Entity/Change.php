@@ -39,7 +39,7 @@ class Change
     /**
      * @var string
      *
-     * @ORM\Column(name="value", type="text", nullable=true)
+     * @ORM\Column(name="value", type="text", nullable=true, options={"charset":"utf8mb4", "collate":"utf8mb4_unicode_ci"})
      */
     private $value;
 
